@@ -1,4 +1,7 @@
+<img src="2895158255655a731d83ecb9c88132d7.png" width=128 style="border: 1px solid rgba(0,0,0,0.5); border-radius: 10px">
+
 # gena
+
 Java tool for generating server resources as c-style arrays
 
 Hello, I'm **Gena**!
