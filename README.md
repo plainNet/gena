@@ -7,25 +7,25 @@ My function is recycling your web project files into C-style arrays placed into 
 
 My command line arguments are listed below:
 ```
-- web_folder:		    defines location of folder with web 
-			            project files (see example below);
+- web_folder:           defines location of folder with web 
+                        project files (see example below);
 	
-- out:			        defines ABSOLUTE path for folder(s) where 
-			            result file(s) will be placed (see example below);
+- out:                  defines ABSOLUTE path for folder(s) where 
+                        result file(s) will be placed (see example below);
 	
-- folder_ignore:	    defines list of ignored folders inside 
-			            "web_folder" (see example below);
+- folder_ignore:        defines list of ignored folders inside 
+                        "web_folder" (see example below);
 	
-- file_ignore:		    defines list of ignored files
-			            inside "web_folder" (see example below);
+- file_ignore:          defines list of ignored files
+                        inside "web_folder" (see example below);
 	
-- folder_ignore_src:	defines RELATIVE path to list-file with 
-			            enumeration ignored folders inside 
-			            "web_folder" (see example below);
+- folder_ignore_src:    defines RELATIVE path to list-file with 
+                        enumeration ignored folders inside 
+                        "web_folder" (see example below);
 	
-- file_ignore_src:	    defines RELATIVE path to list-file with 
-			            enumeration of ignored files inside
-			            "web_folder" (see example below).
+- file_ignore_src:      defines RELATIVE path to list-file with 
+                        enumeration of ignored files inside
+                        "web_folder" (see example below).
 ```
 <b>EXAMPLES CONDITIONS</b>
 
@@ -56,16 +56,16 @@ My command line arguments are listed below:
 				*--> index.html
 				|
 				*--> js (folder) *-->script_1.js
-				|			     |
-				|			     *-->script_2.js
+				|                |
+				|                *-->script_2.js
 				|
 				*--> css (folder) *--> styles.css
 				|
 				*--> less (folder) *--> header.less
-							       |
-							       *--> fonts.less
-							       |
-							       *--> styles.less
+                                                   |
+                                                   *--> fonts.less
+                                                   |
+                                                   *--> styles.less
 ```
 
 1) Gena is used to map all allowded resources in **/opt/hardware/stm32/projects/em-proj-web**
@@ -85,20 +85,20 @@ My command line arguments are listed below:
 ```
    java -jar /path-to-gena/Gena.jar web_folder="/opt/hardware/stm32/projects/em-proj-web" out="/opt/hardware/stm32/projects/em-proj/plainNet/src" folder_ignore_src=dir_igonre.ini file_ignore_src=file_igonre.ini
 ```
-
+```
 	**** dir_igonre.ini ****
-	*		               *
-	*	less               *
-	*		               *
+	*                      *
+	*	less           *
+	*		       *
 	************************
 
 	**** file_igonre.ini ****
-	*			            *
-	*	*.git		        *
-	*	*.md		        *
-	*			            *
+	*                       *
+	*	*.git           *
+	*	*.md		*
+	*			*
 	*************************
-	
+```	
 In all examples Gena will ignore folder named "less" and all files in all directories with extensions *.git and *.md. C-style arrays will be generated for:
 
 	- index.html (URI: / and /index.html);
