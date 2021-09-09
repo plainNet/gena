@@ -359,6 +359,10 @@ public class Gena {
         int inRow = 0;
         byte[] buf = new byte[4096];
         int n = 0;
+        long length = f.length();
+        long handled = 0;
+        int lastPercent = 0;
+        int percent = 0;
         while ((n = fis.read(buf)) != -1) {
             for (int i = 0; i < n; i++) {
                 int sym = ((int) buf[i]) & 255;
@@ -369,7 +373,18 @@ public class Gena {
                     arr += "\r\n\t";
                 }
             }
+            if(handled == 0) {
+                System.out.print("\tencoding: ");
+                System.out.print("0%");
+            }
+            handled += n;
+            percent = (int)(handled * 100 / length);
+            if((percent - lastPercent) >= 5) {
+                lastPercent = percent;
+                System.out.print(" " + percent + "%");
+            }
         }
+        System.out.println();
         return (arr + "\r\n}");
     }
 
