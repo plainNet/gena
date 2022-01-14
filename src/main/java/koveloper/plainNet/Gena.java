@@ -355,7 +355,8 @@ public class Gena {
             return null;
         }
         FileInputStream fis = new FileInputStream(f);
-        String arr = "{\r\n\t";
+        ByteArrayOutputStream arr = new ByteArrayOutputStream();
+        arr.write("{\r\n\t".getBytes());
         int inRow = 0;
         byte[] buf = new byte[4096];
         int n = 0;
@@ -366,11 +367,11 @@ public class Gena {
         while ((n = fis.read(buf)) != -1) {
             for (int i = 0; i < n; i++) {
                 int sym = ((int) buf[i]) & 255;
-                arr += "0x" + (sym <= 15 ? "0" : "") + Integer.toHexString(sym).toUpperCase() + ", ";
+                arr.write(("0x" + (sym <= 15 ? "0" : "") + Integer.toHexString(sym).toUpperCase() + ", ").getBytes());
                 inRow++;
                 if (inRow == maxSymbolsInRow) {
                     inRow = 0;
-                    arr += "\r\n\t";
+                    arr.write("\r\n\t".getBytes());
                 }
             }
             if(handled == 0) {
@@ -384,8 +385,10 @@ public class Gena {
                 System.out.print(" " + percent + "%");
             }
         }
+        System.out.print("\t100%");
         System.out.println();
-        return (arr + "\r\n}");
+        arr.write("\r\n}".getBytes());
+        return new String(arr.toByteArray());
     }
 
     private void extractFiles(File folder, LinkedList<File> to, FileFilter accepter) {
